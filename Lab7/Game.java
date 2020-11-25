@@ -60,7 +60,9 @@ public class Game {
         catch(IOException e)
         {}
         //printing the regular console input
-        System.out.println("Hi user! How are you?");
+        System.out.println("Hi user! Welcome th the labyrinth game!");
+        System.out.println("Do you think you can make it to the top?");
+        System.out.println("Remember you can always reset the board.");
         System.out.println("Here are your possible options: ");
         for( var option : java.util.Arrays.asList(Option.values()))
             System.out.println(option);
@@ -85,7 +87,7 @@ public class Game {
         }
         else{
             //System.out.println("Step function here, condition from check.test not passed");
-            System.out.println("Invalid move");
+            //System.out.println("Invalid move");
         }
     }
 
