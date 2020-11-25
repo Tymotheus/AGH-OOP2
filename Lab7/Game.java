@@ -27,7 +27,7 @@ public class Game {
     public void generateBoard(){
         //board is stored row-wise (I think)
         this.board = new char[y_size][x_size];
-        
+
         for (int i = 0; i < y_size; i++){
             for(int j = 0; j < x_size; j++ )
             {
@@ -48,7 +48,18 @@ public class Game {
     }
 
     public void printBoard()throws IOException, InterruptedException{
+        //flushing the screen for windows and linux
+        try{
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        }
+        catch(IOException e)
+        {}
+        try {
+        new ProcessBuilder("bash", "-c", "clear").inheritIO().start().waitFor();
+        }
+        catch(IOException e)
+        {}
+        //printing the regular console input
         System.out.println("Hi user! How are you?");
         System.out.println("Here are your possible options: ");
         for( var option : java.util.Arrays.asList(Option.values()))
@@ -73,13 +84,13 @@ public class Game {
             board[player_y][player_x] = '@';
         }
         else{
-            System.out.println("Step function here, condition from check.test not passed");
+            //System.out.println("Step function here, condition from check.test not passed");
             System.out.println("Invalid move");
         }
     }
 
     public void startGame()throws IOException, InterruptedException
-    {   
+    {
         System.out.println("Hi user! How are you?");
         System.out.println("Here are your possible options: ");
         for( var option : java.util.Arrays.asList(Option.values()))
@@ -101,7 +112,7 @@ public class Game {
                     System.out.println("Reseting the board");
                     generateBoard();
                     break;
-                
+
                 case 'q':
                     option = Option.EXIT;
                     inGame = false;
@@ -112,15 +123,15 @@ public class Game {
                     option = Option.UP;
                     //System.out.println("Up we go!");
                     break;
-                
+
                 case 'a':
                     option = Option.LEFT;
                     break;
-                
+
                 case 's':
                     option = Option.DOWN;
                     break;
-                
+
                 case 'd':
                     option = Option.RIGHT;
                     break;
@@ -128,7 +139,7 @@ public class Game {
                     System.out.println("Please enter a valid character.");
                 }
             if ( (option == Option.LEFT) || (option == Option.RIGHT) || (option==Option.UP) || (option == Option.DOWN))
-            {   
+            {
                 //I want to call the step function with the direction chosen by user before
                 //as an instance of CheckStep I want to pass lambda expression below. What the heck is not working?
                 //Ok here you need to be extra careful!
