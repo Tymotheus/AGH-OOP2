@@ -30,6 +30,7 @@ class RunnableDemo implements Runnable {
     }
 }
 
+
 public class TestThread{
     
     public static void main(String args[]){
